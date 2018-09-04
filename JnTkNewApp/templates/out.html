@@ -1,0 +1,46 @@
+{%block content%}
+    <body>
+        {% for x in object %}
+        <a href="{{ x.pdf.url }}" class='PDF' target="_blank" value="{{ x.id }}" onclick=myfunc(this)>{{ x.pdf }}</a><br>
+        {{ x.id }}
+        {{x.teachername}} {{x.collegename}} {{ x.views }}
+        <script>
+        function myfunc(x){
+            k = new XMLHttpRequest();
+            z = x.getAttribute('value')
+            k.open('GET','http://localhost:8000/AppComp/CountView/'+z,true);
+            k.send(z);
+            k.responseText;
+        }
+        </script>
+        {% endfor %}
+        <h3>VIDEO URLS</h3>
+        {% for x in videos %}
+        <a href="{{ x.Topicurl }}" target="_blank" value="{{ x.id }}" onclick=myfun(this)>{{ x.TopicName }}</a><br>
+        {{x.teachername}} {{x.clgname}} {{ x.views }}
+        <script>
+            function myfun(x){
+                k = new XMLHttpRequest();
+                z = x.getAttribute('value')
+                k.open('GET','http://localhost:8000/AppComp/CountViews/'+z,true);
+                k.send(z);
+                k.responseText;
+            }
+            </script>
+        {% endfor %}
+        <h3>TOPIC WISE PDFS</h3>
+        {% for x in videos %}
+        <a href="{{ x.Topicpdf.url }}" target="_blank" value="{{ x.id }}" onclick=myfuncs(this)>{{ x.TopicName }}</a><br>
+        {{x.teachername}} {{x.collegename}} {{ x.views }}
+        <script>
+            function myfuncs(x){
+                k = new XMLHttpRequest();
+                z = x.getAttribute('value')
+                k.open('GET','http://localhost:8000/AppComp/CountViews/'+z,true);
+                k.send(z);
+                k.responseText;
+            }
+            </script>
+        {% endfor %}        
+    </body>
+{%endblock%}

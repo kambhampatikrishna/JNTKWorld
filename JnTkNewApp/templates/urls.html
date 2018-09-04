@@ -1,0 +1,8 @@
+{% block content %}
+    <form method='post' enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ forms.as_p }}
+        <input type="submit">
+        <a href="/">HOME</a>
+    </form>
+{% endblock %}

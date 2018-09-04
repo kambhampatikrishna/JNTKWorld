@@ -1,0 +1,23 @@
+{% load i18n %}
+{% load staticfiles %}
+{% now "Y" as current_year %}
+
+{% blocktrans %}
+<div class="copyright" style="padding-top:15px;"><strong>&copy; {{ current_year }} by SKT Group</strong></div>
+{% endblocktrans %}
+
+<div class="made-with-pinax">
+    
+    <div class="patches">
+            <div class="iconfonts">
+                    <span style="color:#333;">Stay Connected on</span>
+                    <a href="https://www.facebook.com"><span class="brandico-facebook-rect" style="color:rgb(50, 50, 158);"></span></a>
+                    <a href="https://www.instagram.com"><span class="brandico-instagram-filled" style="color:#4E433C;"></span></a>
+                    <a href="https://www.linkedin.com"><span class="brandico-linkedin-rect" style="color:#4875B4;"></span></a>
+                    <a href="https://www.twitter.com"><span class="brandico-twitter-bird" style="color:#33CCFF;"></span></a>
+            </div>
+        <!--{% for app in pinax_apps %}
+           <img src="http://pinax.github.com/pinax-design/patches/{{ app }}.svg" />
+        {% endfor %}-->
+    </div>
+    </div>

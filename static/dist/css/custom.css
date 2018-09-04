@@ -1,0 +1,25 @@
+.selecti{
+    padding: 13px 5px 15px 10px;
+    background-color: whitesmoke;
+    border-radius: 5px;
+    color: #333;
+}
+
+select{
+    margin-right: 7px;
+}
+
+.course-item{
+    margin-bottom: 25px;
+}
+
+.incustom{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.incustom:hover{
+    cursor:pointer;
+    color: black;
+}
+

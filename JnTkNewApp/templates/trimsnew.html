@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+	<title>Contact V11</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<!--===============================================================================================-->
+</head>
+<body>
+
+
+	<div class="container-contact100" style="background-image:url('{% static "img/bg-01.jpg" %}');">
+		<div class="wrap-contact100">
+			<form class="contact100-form validate-form" enctype="multipart/form-data" method="POST">
+				{% csrf_token %}
+				<span class="contact100-form-title">
+					Post Specific Topics and VideoURL (if any)
+				</span>
+
+				<div class="wrap-input100 rs1-wrap-input100 validate-input">
+					<span class="label-input100">Topic Name *</span>
+					<input class="input100" type="text" name="TopicName" placeholder="Enter topic name" required>
+				</div>
+
+				<div class="wrap-input100 rs1-wrap-input100 validate-input">
+					<span class="label-input100">Topic PDF *</span>
+					<input  type="file" name="Topicpdf" placeholder="Ex: Algorithms"  style="padding:25px;" required>
+				</div>
+
+				<div class="wrap-input100 rs1-wrap-input100 validate-input">
+					<span class="label-input100">Topic URL *</span>
+					<input class="input100" type="url" name="Topicurl" placeholder="Ex: https://www.youtube.com/watch?v=hqDT5_4z_YI" required>
+				</div>
+
+				<div class="wrap-input100 rs1-wrap-input100 validate-input" >
+					<span class="label-input100">Subject Name *</span>
+					<input type="text" name="subname" class="input100">
+				</div>
+				<div class="container-contact100-form-btn">
+					<div class="wrap-contact100-form-btn">
+						<div class="contact100-form-bgbtn"></div>
+						<button class="contact100-form-btn">Submit</button>
+					</div>
+				</div>
+			</form>
+
+			<span class="contact100-form-title">
+				  Posted Enough ? Redirect to home
+			</span>
+
+
+			<div class="container-contact100-form-btn" style="float:right;">
+				<div class="wrap-contact100-form-btn">
+					<div class="contact100-form-bgbtn"></div>
+					<a href="{% url 'home' %}" class="contact100-form-btn">Home</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+</body>
+</html>

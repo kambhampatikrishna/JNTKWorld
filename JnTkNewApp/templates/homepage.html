@@ -1,0 +1,203 @@
+{% extends "site_base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% block head_title %}pinax-project-account{% endblock %}
+
+{% block body_class %}home{% endblock %}
+
+{% block body_base %}
+<main>
+    <section class="jumbotron" style="background-image: url('{% static "img/bg-01.jpg" %}')">
+        <div class="container">
+            {% include "_messages.html" %}
+            <h1>{% blocktrans %}Welcome to<div style="font-size: 6rem; font-weight: 600;">JnTuK World</div>{% endblocktrans %}</h1>
+            <p class="lead" style="color:black;">
+                {% blocktrans %}
+                A platform designed to ease your exam preparation with -<br >"No more links and unneccesary websites."
+                {% endblocktrans %}
+            </p>
+            {% if not user.is_authenticated %}
+            {% url "account_login" as login_url %}
+			{% url "account_signup" as signup_url %}
+            {% endif %}
+        </div>
+    </section>
+
+    <section class="multi-search-section">
+		<div class="msf-warp">
+			<div class="container">
+				<h5>Search your Course</h5>
+				<form class="multi-search-form" method='GET' enctype="multipart/form-data" action="AppComp/gotothis">
+					{% csrf_token %}
+                    <select class="selecti" name='branchname' required>
+						<option selected disabled>Branch</option>
+                        <option value="cse">CSE</option>
+                        <option value="ece">ECE</option>
+                        <option value="it">IT</option>
+                    </select>
+
+                    <select class="selecti" name='semester' required>
+							<option selected disabled>Year & Semester</option>
+                            <option value="1-1">1-1</option>
+                            <option value="1-2">1-2</option>
+                            <option value="2-1">2-1</option>
+                            <option value="2-2">2-2</option>
+							<option value="3-1">3-1</option>
+							<option value="3-2">3-2</option>
+							<option value="4-1">4-1</option>
+							<option value="4-2">4-2</option>
+						</select>
+				
+                    <select class="selecti" name='regulation' required>
+							<option selected disabled>Regulation</option>
+                            <option value="r16">R16</option>
+                            <option value="r13">R13</option>
+					</select>
+
+					<input type="text" placeholder="Full Sub Name :" name="subname" class="selecti" required/>
+					<input type="text" placeholder="Unit No. 1,2,3...6 or ALL" name="unit" class="selecti" required/> 
+					
+					{% if user.is_authenticated %}
+						<button class="site-btn" type="submit">Search <i class="fa fa-angle-right"></i></button>
+						<a href="AppComponent1/into" class ="site-btn incustom">Post <i class ="fa fa-angle-right"></i></a>
+					{% else %}
+						<button class="site-btn" type="submit">Search<i class="fa fa-angle-right"></i></button>
+					{% endif %}
+				</form>
+			</div>
+		</div>
+	</section>
+
+    <section class="courses-section spad">
+		<div class="container">
+			<div class="sec-title text-center">
+				<span>Only the best</span>
+				<h2>Trending Technologies & Learing Paths </h2>
+			</div>
+			<div class="course-slider owl-carousel">
+				<!-- course 1 -->
+				<div class="course-item">
+					<div class="course-preview">
+					<div class="price">Udacity</div>
+					</div>
+					<div class="course-content">
+						<div class="cc-text">
+							<h5><a href="https://in.udacity.com/course/ai-for-trading--nd880" target="_blank">Artificial Intelligence</a></h5>
+							<p>Complete real-world projects designed by industry experts,
+								 covering topics from asset management to trading signal generation.
+								  Master AI algorithms for trading, and build your career-ready portfolio.</p>
+						</div>
+						<div class="seller-info">
+							<div class="seller-pic set-bg" style="background-image: url('{% static "img/cindy.png" %}');"></div>
+							<h6>By Cindy Lin, <span>Curriculum Lead at Udacity</span></h6>
+						</div>
+					</div>
+				</div>
+				<!-- course -->
+				<div class="course-item">
+					<div class="course-preview">
+						<div class="price">edX</div>
+					</div>
+					<div class="course-content">
+						<div class="cc-text">
+							<h5><a href="https://www.edx.org/micromasters/curtinx-internet-of-things-iot" target="_blank">Internet of Things</a></h5>
+							<p>The IoT is leading a digital revolution for industries.
+								 Learn to design IoT solutions and guide cutting-edge IoT projects in your field.</p>
+						</div>
+						<div class="seller-info">
+							<div class="seller-pic set-bg" style="background-image:url('{% static "img/aloke.jpg" %}');"></div>
+							<h6>By Aloke Phatak, <span>Senior Lecturer at Curtain University</span></h6>
+						</div>
+					</div>
+				</div>
+				<!-- course -->
+				<div class="course-item">
+					<div class="course-preview">
+						<div class="price">Udacity</div>
+					</div>
+					<div class="course-content">
+						<div class="cc-text">
+							<h5><a href="https://in.udacity.com/course/blockchain-developer-nanodegree--nd1309" target="_blank">Blockchain Development</a></h5>
+							<p>Demand for blockchain developers is skyrocketing. In this program,
+								 you'll work with the Bitcoin and Ethereum protocols, build projects
+								  for real-world application, and gain the essential skills for a career in this dynamic space.</p>
+						</div>
+						<div class="seller-info">
+							<div class="seller-pic set-bg" style="background-image:url('{% static "img/brandy.jpg" %}');"></div>
+							<h6>By Brandy Camacho, <span>Instructor at Udacity</span></h6>
+						</div>
+					</div>
+				</div>
+				<!-- course -->
+				<div class="course-item">
+						<div class="course-preview">
+							<div class="price">Linkedin</div>
+						</div>
+						<div class="course-content">
+							<div class="cc-text">
+								<h5 style="margin-left:95px;"><a href="https://www.linkedin.com/learning/paths/become-an-ethical-hacker" target="_blank">Ethical Hacking</a></h5>
+								<p>Ethical hacking is the ability to identify vulnerabilities in an organization's
+									 network or infrastructure, and then address the issues to prevent incidents
+									  or attacks. Learn how to perform penetration testing and gain the knowledge
+									   and skills you need for a career in information security.</p>
+							</div>
+							<div class="seller-info">
+								<div class="seller-pic set-bg" style="background-image:url('{% static "img/lisa.jpg" %}');"></div>
+								<h6>By Lisa Bock, <span>Network Security Expert</span></h6>
+							</div>
+						</div>
+					</div>
+				<!-- course -->
+				<div class="course-item">
+						<div class="course-preview">
+							<div class="price">Pluralsight</div>
+						</div>
+						<div class="course-content">
+							<div class="cc-text">
+								<h5 style="margin-left:120px;"><a href="https://www.pluralsight.com/paths/react" target="_blank">Reactjs</a></h5>
+								<p>React is a Javascript library, developed in 2013 by Jordan Walke of Facebook.
+									 You’ll find React is both very popular (it’s the 5th most starred JS library on GitHub)
+									  and used on major sites including on Facebook, Netflix etc.</p>
+							</div>
+							<div class="seller-info">
+								<div class="seller-pic set-bg" style="background-image:url('{% static "img/cory-house.jpg" %}');"></div>
+								<h6>By Cory House, <span>Microsoft MVP</span></h6>
+							</div>
+						</div>
+					</div>
+				<!-- course -->
+				<div class="course-item">
+						<div class="course-preview">
+							<div class="price">Coursera</div>
+						</div>
+						<div class="course-content">
+							<div class="cc-text">
+								<h5 style="margin-left:100px;"><a href="https://www.coursera.org/specializations/data-science-python" target="_blank">Applied Data Science with Python</a></h5>
+								<p>Gain new insights into your data . Learn to apply data science methods and techniques, and acquire analysis skills.</p>
+							</div>
+							<div class="seller-info">
+								<div class="seller-pic set-bg" style="background-image:url('{% static "img/chris.jpg" %}');"></div>
+								<h6>By Christopher Brooks, <span>Michigan University</span></h6>
+							</div>
+						</div>
+					</div>
+				<!-- course -->
+				<div class="course-item">
+						<div class="course-preview">
+							<div class="price">edX</div>
+						</div>
+						<div class="course-content">
+							<div class="cc-text">
+								<h5><a href="https://www.edx.org/xseries/business-principles-entrepreneurial" target="_blank">Business Principles and Entrepreneurial Thought</a></h5>
+								<p>Learn core business skills and
+									 how they intersect with Entrepreneurship of All Kinds® from the #1 business school in Entrepreneurship.</p>
+							</div>
+							<div class="seller-info">
+								<div class="seller-pic set-bg" style="background-image:url('{% static "img/markp.jpg" %}');"></div>
+								<h6>By Mark Potter, <span>Professor of Finance at Babson</span></h6>
+							</div>
+						</div>
+					</div>
+			</main>
+			<span class="site-btn" style="font-size:20px;">"Still lot more to learn..."</span>
+{% endblock %}
