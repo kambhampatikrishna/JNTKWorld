@@ -1,46 +1,107 @@
-{%block content%}
+{% extends 'site_base.html' %}
+{% load staticfiles %}
+{%block body_base %}
+    <head>
+            <link href='http://fonts.googleapis.com/css?family=Archivo+Narrow:400,700|Open+Sans:400,300' rel='stylesheet' type='text/css' />
+            <link href="{% static 'css/templstu.css' %}" rel="stylesheet" type="text/css" media="screen" />
+    </head>
     <body>
-        {% for x in object %}
-        <a href="{{ x.pdf.url }}" class='PDF' target="_blank" value="{{ x.id }}" onclick=myfunc(this)>{{ x.pdf }}</a><br>
-        {{ x.id }}
-        {{x.teachername}} {{x.collegename}} {{ x.views }}
-        <script>
-        function myfunc(x){
-            k = new XMLHttpRequest();
-            z = x.getAttribute('value')
-            k.open('GET','http://localhost:8000/AppComp/CountView/'+z,true);
-            k.send(z);
-            k.responseText;
-        }
-        </script>
-        {% endfor %}
-        <h3>VIDEO URLS</h3>
-        {% for x in videos %}
-        <a href="{{ x.Topicurl }}" target="_blank" value="{{ x.id }}" onclick=myfun(this)>{{ x.TopicName }}</a><br>
-        {{x.teachername}} {{x.clgname}} {{ x.views }}
-        <script>
-            function myfun(x){
-                k = new XMLHttpRequest();
-                z = x.getAttribute('value')
-                k.open('GET','http://localhost:8000/AppComp/CountViews/'+z,true);
-                k.send(z);
-                k.responseText;
-            }
-            </script>
-        {% endfor %}
-        <h3>TOPIC WISE PDFS</h3>
-        {% for x in videos %}
-        <a href="{{ x.Topicpdf.url }}" target="_blank" value="{{ x.id }}" onclick=myfuncs(this)>{{ x.TopicName }}</a><br>
-        {{x.teachername}} {{x.collegename}} {{ x.views }}
-        <script>
-            function myfuncs(x){
-                k = new XMLHttpRequest();
-                z = x.getAttribute('value')
-                k.open('GET','http://localhost:8000/AppComp/CountViews/'+z,true);
-                k.send(z);
-                k.responseText;
-            }
-            </script>
-        {% endfor %}        
+            <div id="wrapper" style="background-image:url('{% static "img/bg-01.jpg" %}');">
+                    <div id="header-wrapper">
+                        <div id="header" class="container">
+                            <div id="menu">
+                                <ul>
+                                    <li class="current_page_item"><a href="#pdf">PDF's</a></li>
+                                    <li class="current_page_item"><a href="#topicpdf">TOPIC WISE PDF's</a></li>
+                                    <li class="current_page_item"><a href="#videourl">VIDEO URL's</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="banner">
+                            <div class="content"><img src="{% static 'img/opentext.jpg' %}" width="1000" height="300" alt="" /></div>
+                        </div>
+                    </div>
+                <div id="page">
+                    <h3 id="pdf">PDF's</h3>
+                    <div id="content">
+                        {% for x in object %}
+                            <div class="post">
+                            <h2 class="title"><a href="{{ x.pdf.url }}" class='PDF' target="_blank" value="{{ x.id }}" onclick=myfunc(this)>{{ x.pdf }}</a></h2>
+                            <!--<p class="meta"><span class="date">April 05, 2013</span><span class="posted">Posted by <a href="#">Someone</a></span></p>-->
+                            <!--<p class="meta"><span class="date">by {{x.teachername}}</span></p>-->
+                            <p class="meta"><span class="date">from {{x.clgname}}</span></p>
+                            <p class="meta fa"><span class="date">views {{x.views}}</span></p>
+                            <div style="clear: both;">&nbsp;</div>
+                            </div>
+                        
+                            <script>
+                                    function myfunc(x){
+                                        k = new XMLHttpRequest();
+                                        z = x.getAttribute('value')
+                                        k.open('GET','http://localhost:8000/AppComp/CountView/'+z,true);
+                                        k.send(z);
+                                        k.responseText;
+                                    }
+                            </script>
+                        {% endfor %}
+                    </div>
+                    <div style="clear: both;">&nbsp;</div>
+                </div>
+
+                <div id="page">
+                    <h3 id="videourl">Video URL's</h3>
+                    <div id="content">
+                        {% for x in videos %}
+                            <div class="post">
+                                <h2 class="title"><a href="{{ x.Topicurl }}" target="_blank" value="{{ x.id }}" onclick=myfun(this)>{{ x.TopicName }}</a></h2>
+                                <!--<p class="meta"><span class="date">April 05, 2013</span><span class="posted">Posted by <a href="#">Someone</a></span></p>-->
+                                <!--<p class="meta"><span class="date">by {{x.teachername}}</span></p>-->
+                                <p class="meta"><span class="date">from {{x.clgname}}</span></p>
+                                <p class="meta"><span class="date">views {{x.views}}</span></p>
+                                <div style="clear: both;">&nbsp;</div>
+                            </div>
+                            <script>
+                                function myfun(x){
+                                    k = new XMLHttpRequest();
+                                    z = x.getAttribute('value')
+                                    k.open('GET','http://localhost:8000/AppComp/CountViews/'+z,true);
+                                    k.send(z);
+                                    k.responseText;
+                                }
+                            </script>
+                        {% endfor %}
+                    
+                    </div>
+                </div>
+
+                <div id="page">
+                    <h3 id="topicpdf">TOPIC WISE PDF's</h3>
+                    <div id="content">
+                        {% for x in videos %}
+                            <div class="post">
+                                <h2 class="title"><a href="{{ x.Topicpdf.url }}" target="_blank" value="{{ x.id }}" onclick=myfuncs(this)>{{ x.TopicName }}</a></h2>
+                                <!--<p class="meta"><span class="date">April 05, 2013</span><span class="posted">Posted by <a href="#">Someone</a></span></p>-->
+                                <!--<p class="meta"><span class="date">by {{x.teachername}}</span></p>-->
+                                <p class="meta"><span class="date">from {{x.clgname}}</span></p>
+                                <p class="meta"><span class="date">views {{x.views}}</span></p>
+                                <div style="clear: both;">&nbsp;</div>
+                                
+                            </div>
+                            <script>
+                                function myfuncs(x){
+                                    k = new XMLHttpRequest();
+                                    z = x.getAttribute('value')
+                                    k.open('GET','http://localhost:8000/AppComp/CountViews/'+z,true);
+                                    k.send(z);
+                                    k.responseText;
+                                }
+                            </script>
+                        {% endfor %}
+                    
+                    </div>
+
+                </div>
+
+            </div>    
     </body>
-{%endblock%}
+{% endblock %}

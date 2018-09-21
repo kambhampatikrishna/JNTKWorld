@@ -20,7 +20,6 @@ def CseView(request):
         reg = reg.lower()
         sname =sname.lower()
         bname =bname.lower()
-        uname =uname.lower()
         try:
             subpdf=models.Branches.objects.filter(branchname=bname,regulation=reg,semester=sem,subname=sname,unit=uname)
             ordered = sorted(subpdf, key=operator.attrgetter('views'),reverse=True)
